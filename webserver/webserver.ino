@@ -41,14 +41,11 @@ void loop() {
               client.println("Content-type:text/html");
               client.println("Connection: close");
               client.println();
- 
-              
-
               if(header.indexOf("GET /13/on") >= 0){
                 digitalWrite(13,HIGH);
                 buttonState = "ON";
               }
-              else{
+              if(header.indexOf("GET /13/off") >= 0){
                 digitalWrite(13,LOW);
                 buttonState = "OFF";
               }
