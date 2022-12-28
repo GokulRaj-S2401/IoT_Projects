@@ -43,13 +43,12 @@ void setup() {
 
 void loop() {
   if(Firebase.ready() ){
-    soilMoisture = ( 100.00 - ( (analogRead(34) / 1023.00) * 100.00 ) );
+    soilMoisture = ( 100.00 - ((analogRead(35) /1023.00) * 100.00 ) );
+    Serial.println(analogRead(35));
+    Serial.println(digitalRead(13));
     Firebase.setFloat(f,F("/test/moisture_percentage"),soilMoisture);
-    if(soilMoisture<=35){
+    if(soilMoisture<=65){
     Firebase.set(f,F("/test/status"),"Dry");
-    }
-    else if(soilMoisture<=60 && soilMoisture>35){
-    Firebase.set(f,F("/test/status"),"Medium");
     }
     else{
     Firebase.set(f,F("/test/status"),"Wet");
